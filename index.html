@@ -36,17 +36,13 @@
 				<div class="col">
 					<h3>Esquema Conceitual</h3>
 					<div class="figure">
-						<img src="assets/diagram.svg" alt="Esquema conceitual" />
-						<p class="caption">Adicione um diagrama conceitual (substitua a imagem em assets/)</p>
+						<img src="assets\Conceitual.jpeg" alt="Esquema conceitual" />
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section class="card" id="keywords">
-			<h2>Palavras-chave</h2>
-			<p>Insira de 3 a 5 palavras-chave separadas por vírgula:</p>
-		</section>
+
 
 		<section class="card" id="authors">
 			<h2>Autores</h2>
@@ -66,16 +62,8 @@
 
 		<section class="card" id="components">
 			<h2>Componentes e Suprimentos</h2>
-			<p>1x Arduino Uno 
-1x Protoboard
-11x Botões
-10x LEDs RGB
-1x Speaker
-20x Jumpers
-20x Resistores
-10x Capacitores
-1x Display
-/p>
+			<p>1x Arduino Uno, 1x Protoboard, 11x Botões, 10x LEDs RGB, 1x Speaker, 20x Jumpers, 20x Resistores, 10x Capacitores e 1x Display
+			</p>
 		</section>
 
 		<section class="card" id="tools">
@@ -83,32 +71,133 @@
 			<p>Tinkercad, Arduino IDE</p>
 		</section>
 
-		<section class="card" id="steps">
-			<h2>Passo a Passo</h2>
-			<div id="steps-list">
-				<article class="step">
-					<h3 contenteditable="true">Passo 1: Título</h3>
-					<p contenteditable="true">Descrição detalhada do passo 1...</p>
-					<div class="step-images">
-						<img src="assets/placeholder-step.png" alt="imagem do passo" />
-					</div>
-				</article>
-				<!-- Adicione mais passos duplicando o bloco acima -->
-			</div>
+		<section class="card" id="keywords">
+			<h2>Palavras-chave</h2>
+			<ol class="keywords-list">
+				<li>Jogo Eletrônico</li>
+				<li>Interatividade</li>
+				<li>Hardware</li>
+				<li>Sorte</li>
+				<li>Multijogador</li>
+			</ol>
+		</section>
+		
+		<section class="card" id="tools">
+			<h2>Palavras-chave</h2>
+			<p>Tinkercad, Arduino IDE</p>
 		</section>
 
 		<section class="card" id="code">
 			<h2>Código</h2>
-			<p>Trechos essenciais do código. Use o botão para copiar.</p>
 			<div class="code-header">
 				<button class="btn small" onclick="copyCode('snippet-1')">Copiar</button>
 			</div>
-			<pre><code id="snippet-1">// Exemplo de trecho de código
-void setup() {
-	// inicialização
+			<pre><code id="snippet-1">//Declarção das entradas:
+int vermPin1 = 9;     // Pino do LED vermelho do primeiro conjunto
+int verdPin1 = 8;     // Pino do LED verde do primeiro conjunto
+int btnPin1  = 2;     // Pino do botão do primeiro conjunto
+
+int vermPin2 = 11;    // Pino do LED vermelho do segundo conjunto
+int verdPin2 = 10;    // Pino do LED verde do segundo conjunto
+int btnPin2  = 3;     // Pino do botão do segundo conjunto
+
+int vermPin3 = 13;    // Pino do LED vermelho do terceiro conjunto
+int verdPin3 = 12;    // Pino do LED verde do terceiro conjunto
+int btnPin3  = 4;     // Pino do botão do terceiro conjunto
+
+int btnReset = 5;     // Pino do botão de reset
+
+int buzzer = 6;       // Pino do buzzer
+
+int sorteio;          // Variável que armazena o número aleatório (1 a 3)
+
+void setup() {  //essa função é rodada pelo arduino uma unica vez antes de iniciar o código
+  Serial.begin(9600);           // Inicializa comunicação serial
+
+  pinMode(vermPin1, OUTPUT);    // Define o LED vermelho 1 como saída
+  pinMode(verdPin1, OUTPUT);    // Define o LED verde 1 como saída
+  pinMode(vermPin2, OUTPUT);    // Define o LED vermelho 2 como saída
+  pinMode(verdPin2, OUTPUT);    // Define o LED verde 2 como saída
+  pinMode(vermPin3, OUTPUT);    // Define o LED vermelho 3 como saída
+  pinMode(verdPin3, OUTPUT);    // Define o LED verde 3 como saída
+
+  pinMode(btnPin1, INPUT);      // Define o botão 1 como entrada
+  pinMode(btnPin2, INPUT);      // Define o botão 2 como entrada
+  pinMode(btnPin3, INPUT);      // Define o botão 3 como entrada
+  
+  pinMode(buzzer, OUTPUT);      // Define o buzzer como saída
+
+  pinMode(btnReset, INPUT);     // Define o botão de reset como entrada
+
+  randomSeed(analogRead(A0));   // Gera semente aleatória 
+  sorteio = random(1, 4);       // Sorteia um número de 1 a 3
 }
-void loop() {
-	// laço principal
+
+void desligaTodos() { //função que eu criei para usar depois
+  digitalWrite(vermPin1, LOW);  // Desliga LED vermelho 1
+  digitalWrite(verdPin1, LOW);  // Desliga LED verde 1
+  digitalWrite(vermPin2, LOW);  // Desliga LED vermelho 2
+  digitalWrite(verdPin2, LOW);  // Desliga LED verde 2
+  digitalWrite(vermPin3, LOW);  // Desliga LED vermelho 3
+  digitalWrite(verdPin3, LOW);  // Desliga LED verde 3
+
+  randomSeed(analogRead(A0));   // Atualiza a semente aleatória
+  sorteio = random(1, 4);       // Sorteia novamente um número entre 1 e 3
+}
+
+void loop() { //essa função o arduino fica rodando de novo e de novo
+
+  int b1 = digitalRead(btnPin1);   // Lê estado do botão 1
+  int b2 = digitalRead(btnPin2);   // Lê estado do botão 2
+  int b3 = digitalRead(btnPin3);   // Lê estado do botão 3
+  int bReset = digitalRead(btnReset); // Lê estado do botão de reset
+
+  if (bReset == HIGH) {           // Se o botão de reset for pressionado
+    desligaTodos();               // Desliga todos LEDs e faz novo sorteio
+  }
+
+  // Caso o número sorteado seja 1
+  if (sorteio == 1) {
+
+    if (b1 == HIGH){              // Se o botão 1 foi pressionado
+        digitalWrite(vermPin1, HIGH); // Liga LED vermelho 1
+        tone(buzzer, 1500);           // Aciona o buzzer
+        delay(300);                   // Aguarda 300 ms
+        noTone(buzzer);               // Desliga o buzzer
+    }
+
+    if (b2 == HIGH) digitalWrite(verdPin2, HIGH); // Pressão no botão 2 → LED verde 2 liga
+    if (b3 == HIGH) digitalWrite(verdPin3, HIGH); // Pressão no botão 3 → LED verde 3 liga
+  }
+
+  // Caso o número sorteado seja 2
+  else if (sorteio == 2) {
+
+    if (b1 == HIGH) digitalWrite(verdPin1, HIGH); // Pressão no botão 1 → LED verde 1 liga
+
+    if (b2 == HIGH){                // Pressão no botão 2
+        digitalWrite(vermPin2, HIGH); // Liga LED vermelho 2
+        tone(buzzer, 1500);           // Toca o buzzer
+        delay(300);
+        noTone(buzzer);
+    }
+
+    if (b3 == HIGH) digitalWrite(verdPin3, HIGH); // Pressão no botão 3 → LED verde 3 liga
+  }
+
+  // Caso o número sorteado seja 3
+  else if (sorteio == 3) {
+
+    if (b1 == HIGH) digitalWrite(verdPin1, HIGH); // Pressão no botão 1 → LED verde 1 liga
+    if (b2 == HIGH) digitalWrite(verdPin2, HIGH); // Pressão no botão 2 → LED verde 2 liga
+
+    if (b3 == HIGH){                // Pressão no botão 3
+        digitalWrite(vermPin3, HIGH); // Liga LED vermelho 3
+        tone(buzzer, 1500);
+        delay(300);
+        noTone(buzzer);
+    }
+  }
 }
 </code></pre>
 			<p>Repositório completo: <a id="repo-full" href="#" target="_blank">Link do GitHub</a></p>
