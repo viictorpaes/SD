@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Projeto de Sistemas Digitais - Template</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<header class="site-header">
+		<div class="container">
+			<div class="brand">
+				<h1 id="project-name">Plague</h1>
+				<p id="project-subtitle">Desafie a sorte: um jogo de tensão crescente onde cartas definem seu destino e um botão errado aciona o alarme.</p>
+			</div>
+			<nav class="top-actions">
+				<a id="repo-link" class="btn ghost" href="#" target="_blank">Ver no GitHub</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<section class="card" id="overview">
+			<h2>Um jogo estilo 'Croc Croc'. Serão uma sequência de botões e os jogadores puxarão cartas cada um para definir quantos botões apertar. Na rodada 1 será um botão infectado, na 2 dois botões e assim sucessivamente. Quando o botão correto for pressionado um led verde acenderá e quando o infectado for pressionado um led vermelho seguido de um beep para indicar que o jogador perdeu.</h2>
+			<div class="columns">
+				<div class="col">
+					<h3>Motivação</h3>
+					<p contenteditable="true" id="motivation">Aprender Arduindo se divertindo</p>
+
+					<h3>Objetivo</h3>
+					<p contenteditable="true" id="objective">Se divertir</p>
+
+					<h3>Contextualização</h3>
+					<p contenteditable="true" id="context">Contextualize o projeto e sua aplicação...</p>
+				</div>
+				<div class="col">
+					<h3>Esquema Conceitual</h3>
+					<div class="figure">
+						<img src="assets/diagram.svg" alt="Esquema conceitual" />
+						<p class="caption">Adicione um diagrama conceitual (substitua a imagem em assets/)</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="card" id="keywords">
+			<h2>Palavras-chave</h2>
+			<p>Insira de 3 a 5 palavras-chave separadas por vírgula:</p>
+		</section>
+
+		<section class="card" id="authors">
+			<h2>Autores</h2>
+			<div class="authors-grid">
+				<article class="author">
+					<img src="assets/profile-placeholder.svg" alt="Foto do autor" />
+					<h4 contenteditable="true">Nome do Autor</h4>
+					<p contenteditable="true">Função / RA</p>
+					<p class="links">
+						<a href="#" target="_blank">GitHub</a> · <a href="#" target="_blank">LinkedIn</a>
+					</p>
+				</article>
+				<!-- Duplique o bloco acima para outros autores -->
+			</div>
+			<p class="note">Opcional: publique no LinkedIn e coloque o link aqui.</p>
+		</section>
+
+		<section class="card" id="components">
+			<h2>Componentes e Suprimentos</h2>
+			<p>1x Arduino Uno 
+1x Protoboard
+11x Botões
+10x LEDs RGB
+1x Speaker
+20x Jumpers
+20x Resistores
+10x Capacitores
+1x Display
+/p>
+		</section>
+
+		<section class="card" id="tools">
+			<h2>Aplicativos e Plataformas</h2>
+			<p>Tinkercad, Arduino IDE</p>
+		</section>
+
+		<section class="card" id="steps">
+			<h2>Passo a Passo</h2>
+			<div id="steps-list">
+				<article class="step">
+					<h3 contenteditable="true">Passo 1: Título</h3>
+					<p contenteditable="true">Descrição detalhada do passo 1...</p>
+					<div class="step-images">
+						<img src="assets/placeholder-step.png" alt="imagem do passo" />
+					</div>
+				</article>
+				<!-- Adicione mais passos duplicando o bloco acima -->
+			</div>
+		</section>
+
+		<section class="card" id="code">
+			<h2>Código</h2>
+			<p>Trechos essenciais do código. Use o botão para copiar.</p>
+			<div class="code-header">
+				<button class="btn small" onclick="copyCode('snippet-1')">Copiar</button>
+			</div>
+			<pre><code id="snippet-1">// Exemplo de trecho de código
+void setup() {
+	// inicialização
+}
+void loop() {
+	// laço principal
+}
+</code></pre>
+			<p>Repositório completo: <a id="repo-full" href="#" target="_blank">Link do GitHub</a></p>
+		</section>
+
+		<section class="card" id="download">
+			<h2>Download do Projeto</h2>
+			<p>Baixe o projeto completo em formato .zip:</p>
+			<button id="download-zip-2" class="btn">Baixar .zip</button>
+			<p class="note">Substitua `assets/project.zip` pelo arquivo real antes de distribuir.</p>
+		</section>
+
+		<section class="card" id="video">
+			<h2>Vídeo no YouTube</h2>
+			<p>Inclua aqui o vídeo explicativo do projeto:</p>
+			<div class="video-embed">
+				<!-- Substitua o src pelo link do YouTube -->
+				<iframe id="yt-video" width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</section>
+
+		<section class="card" id="lessons">
+			<h2>Problemas enfrentados e lições aprendidas</h2>
+			<h3>Desafios</h3>
+			<p contenteditable="true">Descreva os principais desafios e como foram resolvidos.</p>
+			<h3>Lições aprendidas</h3>
+			<p contenteditable="true">Liste as lições aprendidas durante o desenvolvimento.</p>
+		</section>
+
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<p>&copy; <span id="year"></span> Projeto de Sistemas Digitais — Documentação.</p>
+		</div>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+</html>
