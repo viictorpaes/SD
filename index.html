@@ -4,6 +4,9 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>Projeto de Sistemas Digitais - Template</title>
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -25,13 +28,20 @@
 			<div class="columns">
 				<div class="col">
 					<h3>Motivação</h3>
-					<p contenteditable="true" id="motivation">Aprender Arduindo se divertindo</p>
+					<p contenteditable="true" id="motivation">A motivação para o desenvolvimento deste projeto reside na oportunidade de aplicar, de forma prática e lúdica, conceitos fundamentais de eletrônica digital e lógica de programação. O projeto desafia a capacidade de integrar hardware (sensores e atuadores) com software, criando um sistema capaz de gerenciar estados complexos e aleatoriedade.</p>
 
 					<h3>Objetivo</h3>
-					<p contenteditable="true" id="objective">Se divertir</p>
+					<p contenteditable="true" id="objective"> -Criar um jogo interativo <br><br> -Proporcionar uma experiência divertida <br><br>
+-Ser acessível para qualquer
+público</p>
 
 					<h3>Contextualização</h3>
-					<p contenteditable="true" id="context">Contextualize o projeto e sua aplicação...</p>
+					<p contenteditable="true" id="context">Este projeto propõe o desenvolvimento de um dispositivo de entretenimento eletrônico interativo, inspirado na mecânica clássica de jogos de sorte e tensão (popularmente conhecido como estilo "Croc Croc" ou Crocodile Dentist).<br><br>
+					Diferente da versão puramente mecânica do brinquedo tradicional, este protótipo utiliza lógica de programação e hardware para criar uma experiência dinâmica. O sistema substitui dentes físicos por uma matriz de botões e introduz novas camadas de complexidade ao jogo:<br><br>
+					<strong>Aleatoriedade Controlada:</strong> O uso de cartas para determinar a quantidade de ações por jogador.<br>
+					<strong>Dificuldade Progressiva:</strong> Um sistema de rodadas onde a probabilidade de erro aumenta exponencialmente (1 botão "infectado" na primeira rodada, 2 na segunda, etc.).<br>
+					<strong>Feedback Sensorial:</strong> Respostas audiovisuais imediatas (LEDs verdes/vermelhos e avisos sonoros) para validar as jogadas.<br><br>
+					O objetivo é criar uma experiência de "Party Game" moderna, onde a eletrônica gerencia o acaso, garantindo imparcialidade e aumentando a tensão entre os participantes a cada rodada.</p>
 				</div>
 				<div class="col">
 					<h3>Esquema Conceitual</h3>
@@ -62,8 +72,17 @@
 
 		<section class="card" id="components">
 			<h2>Componentes e Suprimentos</h2>
-			<p>1x Arduino Uno, 1x Protoboard, 11x Botões, 10x LEDs RGB, 1x Speaker, 20x Jumpers, 20x Resistores, 10x Capacitores e 1x Display
-			</p>
+			<ul>
+				<li>1x Placa Arduino (Uno, Nano ou similar)</li>
+				<li>1x Protoboard</li>
+				<li>11x Botões</li>
+				<li>10x LEDs RGB (ou LEDs separados vermelho/verde)</li>
+				<li>1x Speaker / Buzzer</li>
+				<li>20x Jumpers (fios)</li>
+				<li>20x Resistores (diversos; incluir 10kΩ para pull-down e 220Ω/330Ω para LEDs)</li>
+				<li>10x Capacitores (opcionais, para desacoplamento)</li>
+				<li>1x Display (opcional)</li>
+			</ul>
 		</section>
 
 		<section class="card" id="tools">
@@ -81,17 +100,111 @@
 				<li>Multijogador</li>
 			</ol>
 		</section>
-		
-		<section class="card" id="tools">
-			<h2>Palavras-chave</h2>
-			<p>Tinkercad, Arduino IDE</p>
+
+		<section class="card" id="passo-a-passo">
+			<h2>Passo a Passo</h2>
+			<!-- 1. Materiais -->
+			<h3>1. Materiais Necessários</h3>
+			<p>Para seguir este guia, você precisará de:</p>
+			<ul>
+				<li>1x Placa Arduino (Uno, Nano ou similar).</li>
+				<li>1x Protoboard.</li>
+				<li>3x LEDs RGB (do tipo cátodo comum). Nota: se não tiver RGB, pode usar 3 LEDs vermelhos e 3 verdes separados.</li>
+				<li>4x Botões (3 para o jogo, 1 para Reset).</li>
+				<li>4x Resistores de 10kΩ (pull-down para os botões).</li>
+				<li>3x a 6x Resistores de 220Ω ou 330Ω (para os LEDs).</li>
+				<li>1x Buzzer (ativo ou passivo).</li>
+				<li>Jumpers (fios) nas cores: Vermelho, Verde, Azul, Preto, Laranja e Cinza.</li>
+			</ul>
+
+			<!-- 2. Montagem -->
+			<h3>2. Montagem do Circuito (Hardware)</h3>
+			<p>Vamos montar seguindo a lógica do código e as cores dos fios sugeridas abaixo.</p>
+			<h4>Passo A: Alimentação (Fios Laranja e Preto)</h4>
+			<ul>
+				<li>Laranja (5V): Conecte o pino 5V do Arduino na trilha positiva (+) da protoboard.</li>
+				<li>Preto (GND): Conecte o pino GND do Arduino na trilha negativa (-) da protoboard.</li>
+			</ul>
+
+			<h4>Passo B: LEDs RGB (Conjuntos 1, 2 e 3)</h4>
+			<p>Os LEDs RGB têm 4 pernas; a mais longa é o cátodo comum (GND).</p>
+			<ul>
+				<li>Conecte a perna comum de todos os LEDs ao GND (trilha negativa) da protoboard.</li>
+				<li>Use resistores de 220Ω entre cada pino do Arduino e a perna do LED para proteção.</li>
+				<li>Conexões sugeridas:</li>
+				<ul>
+					<li>Conjunto 1: pino 9 → perna vermelha; pino 8 → perna verde.</li>
+					<li>Conjunto 2: pino 11 → perna vermelha; pino 10 → perna verde.</li>
+					<li>Conjunto 3: pino 13 → perna vermelha; pino 12 → perna verde.</li>
+				</ul>
+			</ul>
+
+			<h4>Passo C: Botões de Jogo (Fios Azuis)</h4>
+			<p>Configuração com pull-down (resistor para GND):</p>
+			<ul>
+				<li>Um lado do botão → 5V (trilha positiva).</li>
+				<li>O outro lado do botão: uma perna com resistor de 10kΩ para GND e um jumper para o pino do Arduino.</li>
+				<li>Conexões dos botões:</li>
+				<ul>
+					<li>Botão 1 → pino D2</li>
+					<li>Botão 2 → pino D3</li>
+					<li>Botão 3 → pino D4</li>
+				</ul>
+			</ul>
+
+			<h4>Passo D: Botão de Reset</h4>
+			<p>Segue a mesma lógica dos botões de jogo. Conecte a saída do botão ao pino D5 do Arduino.</p>
+
+			<h4>Passo E: Buzzer (Fio Cinza)</h4>
+			<ul>
+				<li>Fio Cinza: pino D6 → perna positiva (+) do buzzer.</li>
+				<li>Fio Preto: perna negativa (–) do buzzer → GND.</li>
+			</ul>
+
+			<!-- 3. Software -->
+			<h3>3. Software (Upload do Código)</h3>
+			<ol>
+				<li>Abra a Arduino IDE no computador.</li>
+				<li>Conecte o Arduino via cabo USB.</li>
+				<li>Em <em>Ferramentas &gt; Placa</em>, selecione seu modelo (ex.: Arduino Uno).</li>
+				<li>Em <em>Ferramentas &gt; Porta</em>, selecione a porta COM que apareceu.</li>
+				<li>Cole o código do sketch (o trecho disponível na seção <em>Código</em>) e clique em <em>Carregar</em>.</li>
+			</ol>
+
+			<!-- 4. Resumo das Portas -->
+			<h3>4. Resumo das Portas (Checklist Final)</h3>
+			<p>Antes de ligar, confira se os fios estão nos lugares certos:</p>
+			<table>
+				<tr><th>Componente</th><th>Função</th><th>Pino Arduino</th><th>Cor do Fio</th></tr>
+				<tr><td>Botão 1</td><td>Entrada</td><td>D2</td><td>Azul</td></tr>
+				<tr><td>Botão 2</td><td>Entrada</td><td>D3</td><td>Azul</td></tr>
+				<tr><td>Botão 3</td><td>Entrada</td><td>D4</td><td>Azul</td></tr>
+				<tr><td>Reset</td><td>Entrada</td><td>D5</td><td>Azul (ou outra)</td></tr>
+				<tr><td>Buzzer</td><td>Saída Som</td><td>D6</td><td>Cinza</td></tr>
+				<tr><td>LED 1 (Verde)</td><td>Saída Luz</td><td>D8</td><td>Verde</td></tr>
+				<tr><td>LED 1 (Vermelho)</td><td>Saída Luz</td><td>D9</td><td>Vermelho</td></tr>
+				<tr><td>LED 2 (Verde)</td><td>Saída Luz</td><td>D10</td><td>Verde</td></tr>
+				<tr><td>LED 2 (Vermelho)</td><td>Saída Luz</td><td>D11</td><td>Vermelho</td></tr>
+				<tr><td>LED 3 (Verde)</td><td>Saída Luz</td><td>D12</td><td>Verde</td></tr>
+				<tr><td>LED 3 (Vermelho)</td><td>Saída Luz</td><td>D13</td><td>Vermelho</td></tr>
+			</table>
+
+			<!-- 5. Como Testar -->
+			<h3>5. Como Testar</h3>
+			<ol>
+				<li>Ligue o Arduino; o sketch executará o <code>setup()</code> e sorteará um número (graças ao <code>randomSeed</code>).</li>
+				<li>Aperte um dos botões (1, 2 ou 3):</li>
+				<ul>
+					<li>Se acender um LED verde → jogada válida (salvo).</li>
+					<li>Se acender um LED vermelho + beep → botão "infectado" (jogador perde).</li>
+				</ul>
+				<li>Para jogar novamente, aperte o botão Reset (pino D5) para apagar LEDs e sortear novo "infectado".</li>
+			</ol>
 		</section>
 
 		<section class="card" id="code">
 			<h2>Código</h2>
-			<div class="code-header">
-				<button class="btn small" onclick="copyCode('snippet-1')">Copiar</button>
-			</div>
+			<p>Abaixo está o código completo utilizado no projeto:</p>
 			<pre><code id="snippet-1">//Declarção das entradas:
 int vermPin1 = 9;     // Pino do LED vermelho do primeiro conjunto
 int verdPin1 = 8;     // Pino do LED verde do primeiro conjunto
@@ -222,9 +335,31 @@ void loop() { //essa função o arduino fica rodando de novo e de novo
 		<section class="card" id="lessons">
 			<h2>Problemas enfrentados e lições aprendidas</h2>
 			<h3>Desafios</h3>
-			<p contenteditable="true">Descreva os principais desafios e como foram resolvidos.</p>
+			<ol>
+				<li>
+					<strong>Garantia de Aleatoriedade (True Randomness)</strong>
+					<p contenteditable="true">O Problema: Inicialmente, o microcontrolador tendia a repetir a mesma sequência de números "sorteados" toda vez que era ligado, pois a função <code>random()</code> é pseudo-aleatória. Isso tornava o jogo previsível.</p>
+					<p contenteditable="true">A Solução: Foi implementada a função <code>randomSeed(analogRead(A0))</code> no <code>setup()</code> e na função de reset. Ao ler uma porta analógica desconectada (flutuante), o sistema captura ruído estático do ambiente para gerar uma semente única, garantindo que o botão infectado seja imprevisível a cada nova rodada.</p>
+				</li>
+				<li>
+					<strong>Organização do Circuito e "Espaguete de Fios"</strong>
+					<p contenteditable="true">O Problema: Com 3 conjuntos de LEDs, 4 botões e um buzzer, a protoboard ficou saturada, dificultando a identificação de erros de conexão e causando instabilidade nos sinais (mau contato).</p>
+					<p contenteditable="true">A Solução: Adotou-se um padrão rigoroso de codificação por cores para a fiação (Vermelho/Verde para saídas de LED, Azul para entradas de botões, Laranja/Preto para alimentação). Além disso, o código foi reestruturado utilizando variáveis descritivas para os pinos, facilitando a manutenção do hardware.</p>
+				</li>
+				<li>
+					<strong>Lógica de Reinício (Reset do Jogo)</strong>
+					<p contenteditable="true">O Problema: A necessidade de reiniciar o jogo sem desligar a energia do Arduino.</p>
+					<p contenteditable="true">A Solução: Criação de uma função dedicada (<code>desligaTodos()</code>) e a implementação de um botão físico de Reset. Essa função zera os estados dos LEDs e força um novo sorteio imediatamente, permitindo jogabilidade contínua.</p>
+				</li>
+			</ol>
+
 			<h3>Lições aprendidas</h3>
-			<p contenteditable="true">Liste as lições aprendidas durante o desenvolvimento.</p>
+			<ul>
+				<li contenteditable="true"><strong>Integração Hardware-Software:</strong> A importância de alinhar a lógica de programação com a montagem física. Um erro no código pode parecer falha no componente e vice-versa.</li>
+				<li contenteditable="true"><strong>Modularização do Código:</strong> O uso de funções específicas (como a <code>desligaTodos()</code>) torna o código mais limpo, legível e fácil de debugar do que escrever tudo dentro do <code>loop()</code>.</li>
+				<li contenteditable="true"><strong>Feedback ao Usuário:</strong> Indicadores visuais (LEDs) e sonoros (buzzer) são essenciais para confirmar imediatamente se a ação foi registrada e qual foi o resultado.</li>
+				<li contenteditable="true"><strong>Planejamento de Hardware:</strong> A complexidade da montagem aumentou a percepção sobre a necessidade de planejar o espaço na protoboard e a distribuição de energia antes de iniciar a conexão dos fios.</li>
+			</ul>
 		</section>
 
 	</main>
